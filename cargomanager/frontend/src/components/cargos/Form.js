@@ -28,6 +28,18 @@ export class Form extends Component {
     const { from_country, from_city, to_country, to_city, date, volume, weight, cargo_type, description, price } = this.state;
     const cargo = { from_country, from_city, to_country, to_city, date, volume, weight, cargo_type, description, price };
     this.props.addCargo(cargo);
+    this.setState({ 
+      from_country: '',
+      from_city: '',
+      to_country: '',
+      to_city: '',
+      date: '',
+      volume: '',
+      weight: '',
+      cargo_type: '',
+      description: '',
+      price: ''
+    });
   }
   
   render() {
