@@ -1,6 +1,5 @@
 from django.db import models
-
-# Create your models here.
+from django.contrib.auth.models import User
 
 class Cargo(models.Model):
   from_country = models.CharField(max_length=100)
@@ -15,3 +14,4 @@ class Cargo(models.Model):
   created_at = models.DateTimeField(auto_now_add=True)
   closed_at = models.DateTimeField(null=True, blank=True)
   price = models.CharField(max_length=100, blank=True)
+  manager = models.ForeignKey(User, related_name="cargos", on_delete=models.CASCADE, null=True)

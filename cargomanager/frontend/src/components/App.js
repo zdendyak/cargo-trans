@@ -23,7 +23,7 @@ class App extends Component {
           <Fragment>
             <Header />
             <Alerts />
-            <div className="container">
+            <div className="container-fluid">
               <Dashboard />
             </div>
           </Fragment>

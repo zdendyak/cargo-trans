@@ -18,36 +18,39 @@ export class Cargos extends Component {
     return (
       <Fragment>
         <h2>Cargos</h2>
-        <table className="table table-striped">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>From</th>
-              <th>To</th>
-              <th>Date</th>
-              <th>Volume</th>
-              <th>Weight</th>
-              <th>Type</th>
-              <th>Description</th>
-              <th>Price</th>
-            </tr>
-          </thead>
-          <tbody>
-            { this.props.cargos.map(cargo => (
-              <tr key={cargo.id}>
-                <td>{cargo.id}</td>
-                <td>{cargo.from_city} ({cargo.from_country})</td>
-                <td>{cargo.to_city} ({cargo.to_country})</td>
-                <td>{cargo.date}</td>
-                <td>{cargo.volume}</td>
-                <td>{cargo.weight}</td>
-                <td>{cargo.cargo_type}</td>
-                <td>{cargo.description}</td>
-                <td>{cargo.price}</td>
+        <div className="table-responsive-md">
+
+          <table className="table table-striped">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>From</th>
+                <th>To</th>
+                <th>Date</th>
+                <th>Volume</th>
+                <th>Weight</th>
+                <th>Type</th>
+                <th>Description</th>
+                <th>Price</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              { this.props.cargos.map(cargo => (
+                <tr key={cargo.id}>
+                  <td>{cargo.id}</td>
+                  <td>{cargo.from_city} ({cargo.from_country})</td>
+                  <td>{cargo.to_city} ({cargo.to_country})</td>
+                  <td>{cargo.date}</td>
+                  <td>{cargo.volume}</td>
+                  <td>{cargo.weight}</td>
+                  <td>{cargo.cargo_type}</td>
+                  <td>{cargo.description}</td>
+                  <td>{cargo.price}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </Fragment>
     )
   }

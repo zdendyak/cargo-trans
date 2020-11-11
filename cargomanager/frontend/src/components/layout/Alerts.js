@@ -13,7 +13,7 @@ export class Alerts extends Component {
     const { error, message, alert } = this.props;
     if (error !== prevProps.error) {
       Object.keys(error.msg).forEach(key => {
-        const msg = error.msg[key].join();
+        const msg = Array.isArray(error.msg[key]) ? error.msg[key].join() : error.msg[key];
         const normKey = key.split('_').join(' ');
         alert.error(`${normKey}: ${msg}`);
       });

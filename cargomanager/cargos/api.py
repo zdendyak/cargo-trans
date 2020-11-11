@@ -8,3 +8,17 @@ class CargoViewSet(viewsets.ModelViewSet):
     permissions.AllowAny
   ]
   serializer_class = CargoSerializer
+
+
+class CargoMeViewSet(viewsets.ModelViewSet):
+  permission_classes = [
+    permissions.IsAuthenticated
+  ]
+  serializer_class = CargoSerializer
+
+  def get_queryset(self):
+    return self.request.user.cargos.all()
+  
+  def perform_create(self, serializer):
+    serializer.save(manager=self.request.user)
+
