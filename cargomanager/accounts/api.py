@@ -4,7 +4,6 @@ from knox.models import AuthToken
 from .serializers import UserSerializer, RegisterSerializer, LoginSerializer
 
 from django.contrib.auth.models import User
-from rest_framework import viewsets
 
 class RegistrationAPI(generics.GenericAPIView):
   serializer_class = RegisterSerializer
@@ -43,10 +42,8 @@ class UserAPI(generics.RetrieveAPIView):
   def get_object(self):
     return self.request.user
   
-  
-class UserViewSet(viewsets.ModelViewSet):
-  serializer_class = UserSerializer 
+class UserListAPI(generics.ListCreateAPIView):
   queryset = User.objects.all()
-  permission_classes = [
-    permissions.AllowAny
-  ]
+  serializer_class = UserSerializer
+  permission_classes = [permissions.IsAdminUser]
+  
