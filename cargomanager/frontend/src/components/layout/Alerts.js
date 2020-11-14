@@ -12,16 +12,25 @@ export class Alerts extends Component {
   componentDidUpdate (prevProps) {
     const { error, message, alert } = this.props;
     if (error !== prevProps.error) {
+      console.log('ERROR', error)
       Object.keys(error.msg).forEach(key => {
         const msg = Array.isArray(error.msg[key]) ? error.msg[key].join() : error.msg[key];
-        const normKey = key.split('_').join(' ');
-        alert.error(`${normKey}: ${msg}`);
+        if (key === 'non_field_errors') {
+          alert.error(msg);
+        } else {
+          const normKey = key.split('_').join(' ');
+          alert.error(`${normKey}: ${msg}`);
+        }
       });
     }
 
     if (message !== prevProps.message) {
       Object.keys(message).forEach(key => {
-        alert.success(message[key]);
+        if (key.startsWith('error')) {
+          allert.error(message[key]);
+        } else {
+          alert.success(message[key]);
+        }
       });
     }
   }

@@ -17,10 +17,17 @@ class RegisterSerializer(serializers.ModelSerializer):
       user = User.objects.create_user(
         validate_data['username'],
         validate_data['email'],
-        validate_data['password']
       )
-
+      user.set_password(validate_data['password'])
+      user.is_active = True
+      user.save()
       return user
+
+    def update(self, instance, validate_data):
+      if 'password' in validate_data:
+        password = validate_data.pop('password')
+        instance.set_password(password)
+      return super(UserSerializer, self).update(instance, validate_data)
 
 class LoginSerializer(serializers.Serializer):
   username = serializers.CharField()
