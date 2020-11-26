@@ -8,7 +8,7 @@ export default function Dashboard() {
       <div className="row">
         <div className="col-md-12 col-lg-8">
           <div className="py-4">
-            <img src="../../../static/frontend/assets/truck.jpg" className="img-fluid" alt="Responsive image" />
+            <img src="../../../static/frontend/assets/cargo.jpg" className="img-fluid" alt="Responsive image" />
           </div>
           <Cargo />
         </div>

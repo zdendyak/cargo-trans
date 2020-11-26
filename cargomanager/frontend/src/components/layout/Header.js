@@ -35,6 +35,7 @@ export class Header extends Component {
           <button 
             onClick={this.props.logout}
             className="nav-link btn btn-light btn-sm text-align"
+            style={{ fontSize: '14px' }}
           >
             Logout
           </button>
