@@ -5,9 +5,11 @@ import { HashRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
 import Header from './layout/Header';
 import Alerts from './layout/Alerts';
 import PrivateRoute from './common/PrivateRoute';
-import Dashboard from './cargos/Dashboard';
 import Login from './accounts/Login';
 import Register from './accounts/Register';
+import Dashboard from './cargos/Dashboard';
+import CargoDashboard from './cargos/Dashboard';
+import TransportDashboard from './transports/Dashboard';
 
 import { Provider } from 'react-redux';
 import { positions, Provider as AlertProvider} from 'react-alert';
@@ -36,6 +38,8 @@ class App extends Component {
               <div className="container-fluid">
                 <Switch>
                   <PrivateRoute exact path="/" component={Dashboard} />
+                  <PrivateRoute exact path="/cargos" component={CargoDashboard} />
+                  <PrivateRoute exact path="/transports" component={TransportDashboard} />
                   <Route exact path="/register" component={Register} />
                   <Route exact path="/login" component={Login} />
                 </Switch>
