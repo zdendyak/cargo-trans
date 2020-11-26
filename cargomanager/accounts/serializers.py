@@ -1,11 +1,13 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
+from cargos.serializers import CargoSerializer
 from django.contrib.auth import authenticate
 
 class UserSerializer(serializers.ModelSerializer):
+  cargos = CargoSerializer(many=True, read_only=True)
   class Meta:
     model = User
-    fields = ('id', 'username', 'email')
+    fields = ('id', 'username', 'email', 'cargos')
 
 class RegisterSerializer(serializers.ModelSerializer):
   class Meta:

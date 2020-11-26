@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { returnErrors } from './messages';
 
-import { USER_LOADING, USER_LOADED, AUTH_ERROR, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT_SUCCESS, REGISTER_SUCCESS, REGISTER_FAIL } from './types';
+import { USER_LOADING, USER_LOADED, AUTH_ERROR, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT_SUCCESS, REGISTER_SUCCESS, REGISTER_FAIL, GET_CARGOS } from './types';
 
 export const loadUser = () => async (dispatch, getState) => {
   dispatch({ type: USER_LOADING });
@@ -10,9 +10,16 @@ export const loadUser = () => async (dispatch, getState) => {
 
   try {
     const res = await axios.get('/api/auth/user', config);
+    const user = res.data;
+    const { cargos } = user;
+    delete user.cargos;
     dispatch({
       type: USER_LOADED,
-      payload: res.data
+      payload: user
+    });
+    dispatch({
+      type: GET_CARGOS,
+      payload: cargos
     });
   } catch (err) {
     dispatch(returnErrors(err.response.data, err.response.status));

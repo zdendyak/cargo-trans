@@ -9,6 +9,9 @@ class CargoViewSet(viewsets.ModelViewSet):
   ]
   serializer_class = CargoSerializer
 
+  def perform_create(self, serializer):
+    serializer.save(manager=self.request.user)
+
 
 class CargoMeViewSet(viewsets.ModelViewSet):
   permission_classes = [
