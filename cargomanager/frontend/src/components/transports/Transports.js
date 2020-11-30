@@ -1,20 +1,34 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { getTransports } from '../../actions/transports';
+import { getTransports, deleteTransport } from '../../actions/transports';
 
 export class Transports extends Component {
 
   static propTypes = {
     transports: PropTypes.array.isRequired,
-    getTransports: PropTypes.func.isRequired
+    getTransports: PropTypes.func.isRequired,
+    deleteTransport: PropTypes.func.isRequired,
   }
 
   componentDidMount () {
-    this.props.getTransports();
+    this.props.getTransports(this.props.all);
+  }
+
+  onDelete (transport) {
+    this.props.deleteTransport(transport.id);
   }
 
   render() {
+    const getDeleteBtn = (transport) => {
+      return (
+        <td>
+          <button className="btn btn-danger" onClick={() => this.onDelete(transport)}>
+            Delete
+          </button>
+        </td>
+      )
+    }
     return (
       <Fragment>
         <h2>Transports</h2>
@@ -31,6 +45,7 @@ export class Transports extends Component {
                 <th>Weight</th>
                 <th>Type</th>
                 <th>Price</th>
+                { this.props.all ? null : <th></th>}
               </tr>
             </thead>
             <tbody>
@@ -44,6 +59,7 @@ export class Transports extends Component {
                   <td>{transport.weight}</td>
                   <td>{transport.cargo_type}</td>
                   <td>{transport.price}</td>
+                  { this.props.all ? null : getDeleteBtn(transport) }
                 </tr>
               ))}
             </tbody>
@@ -58,4 +74,4 @@ const mapStateToProps = state => ({
   transports: state.transports.transports
 });
 
-export default connect(mapStateToProps, { getTransports })(Transports);
+export default connect(mapStateToProps, { getTransports, deleteTransport })(Transports);

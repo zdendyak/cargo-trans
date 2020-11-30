@@ -68,6 +68,7 @@ export class Form extends Component {
               name="from_country"
               onChange={this.onChange}
               value={from_country}
+              required
             />
             <input 
               className="form-control"
@@ -76,6 +77,7 @@ export class Form extends Component {
               name="from_city"
               onChange={this.onChange}
               value={from_city}
+              required
             />
           </div>
           <div className="form-group">
@@ -87,6 +89,7 @@ export class Form extends Component {
               name="to_country"
               onChange={this.onChange}
               value={to_country}
+              required
             />
             <input 
               className="form-control"
@@ -95,6 +98,7 @@ export class Form extends Component {
               name="to_city"
               onChange={this.onChange}
               value={to_city}
+              required
             />
           </div>
           <div className="form-group">
@@ -106,6 +110,7 @@ export class Form extends Component {
               name="volume"
               onChange={this.onChange}
               value={volume}
+              required
             />
             <input 
               className="form-control"
@@ -114,6 +119,7 @@ export class Form extends Component {
               name="weight"
               onChange={this.onChange}
               value={weight}
+              required
             />
           </div>
           <div className="form-group">
@@ -124,6 +130,7 @@ export class Form extends Component {
               name="date"
               onChange={this.onChange}
               value={date}
+              required
             />
           </div>
           <div className="form-group">
@@ -144,6 +151,7 @@ export class Form extends Component {
               name="description"
               onChange={this.onChange}
               value={description}
+              required
             />
           </div>
           <div className="form-group">

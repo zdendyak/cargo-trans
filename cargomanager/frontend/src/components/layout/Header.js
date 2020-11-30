@@ -16,10 +16,10 @@ export class Header extends Component {
     const authMenuLinks = (
       <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
         <li className="nav-item">
-          <Link to="/cargos" className="nav-link">Cargos</Link>
+          <Link to="/cargos" className="nav-link">My Cargos</Link>
         </li>
         <li className="nav-item">
-          <Link to="/transports" className="nav-link">Transports</Link>
+          <Link to="/transports" className="nav-link">My Transports</Link>
         </li>
       </ul>
     );

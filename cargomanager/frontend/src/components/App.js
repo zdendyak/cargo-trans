@@ -7,7 +7,7 @@ import Alerts from './layout/Alerts';
 import PrivateRoute from './common/PrivateRoute';
 import Login from './accounts/Login';
 import Register from './accounts/Register';
-import Dashboard from './cargos/Dashboard';
+import Dashboard from './dashboard/Dashboard';
 import CargoDashboard from './cargos/Dashboard';
 import TransportDashboard from './transports/Dashboard';
 
@@ -37,7 +37,7 @@ class App extends Component {
               <Alerts />
               <div className="container-fluid">
                 <Switch>
-                  <PrivateRoute exact path="/" component={Dashboard} />
+                  <PrivateRoute exact path="/" component={Dashboard} data={{all: true}}/>
                   <PrivateRoute exact path="/cargos" component={CargoDashboard} />
                   <PrivateRoute exact path="/transports" component={TransportDashboard} />
                   <Route exact path="/register" component={Register} />

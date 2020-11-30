@@ -1,6 +1,8 @@
 from transports.models import Transport
 from rest_framework import viewsets, permissions
 from .serializer import TransportSerializer
+from django.contrib.auth.models import AnonymousUser
+
 
 class TransportViewSet(viewsets.ModelViewSet):
   queryset = Transport.objects.all()
@@ -10,7 +12,10 @@ class TransportViewSet(viewsets.ModelViewSet):
   serializer_class = TransportSerializer
 
   def perform_create(self, serializer):
-    serializer.save(manager=self.request.user)
+    if isinstance(self.request.user, AnonymousUser):
+      serializer.save(manager=None)
+    else:
+      serializer.save(manager=self.request.user)
 
 class TransportMeViewSet(viewsets.ModelViewSet):
   permission_classes = [

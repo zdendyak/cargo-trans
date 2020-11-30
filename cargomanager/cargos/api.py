@@ -1,6 +1,7 @@
 from cargos.models import Cargo
 from rest_framework import viewsets, permissions
 from .serializers import CargoSerializer
+from django.contrib.auth.models import AnonymousUser
 
 class CargoViewSet(viewsets.ModelViewSet):
   queryset = Cargo.objects.all()
@@ -10,7 +11,8 @@ class CargoViewSet(viewsets.ModelViewSet):
   serializer_class = CargoSerializer
 
   def perform_create(self, serializer):
-    serializer.save(manager=self.request.user)
+    if not isinstance(self.request.user, AnonymousUser):
+      serializer.save(manager=self.request.user)
 
 
 class CargoMeViewSet(viewsets.ModelViewSet):

@@ -4,8 +4,10 @@ import { createMessage, returnErrors } from './messages'
 import { ADD_TRANSPORT, DELETE_TRANSPORT, GET_TRANSPORTS } from './types'
 
 
-export const getTransports = () => dispatch => {
-  axios.get('/api/transports')
+export const getTransports = (all = false) => (dispatch, getState) => {
+  const path = all ? '/api/transports' : '/api/my-transports';
+  const options = all ? undefined : tokenConfig(getState);
+  axios.get(path, options)
     .then(res => {
       dispatch({
         type: GET_TRANSPORTS,

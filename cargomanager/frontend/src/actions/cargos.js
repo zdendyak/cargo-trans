@@ -4,8 +4,10 @@ import { createMessage, returnErrors } from './messages';
 
 import  { GET_CARGOS, DELETE_CARGO, ADD_CARGO, GET_ERRORS } from './types';
 
-export const getCargos = () => dispatch => {
-  axios.get('/api/cargos')
+export const getCargos = (all = false) => (dispatch, getState) => {
+  const path = all ? '/api/cargos' : '/api/my-cargos/';
+  const options = all ? undefined : tokenConfig(getState);
+  axios.get(path, options)
     .then(res => {
       dispatch({
         type: GET_CARGOS,
@@ -27,7 +29,7 @@ export const addCargo = (cargo) => (dispatch, getState) => {
     .catch(err => dispatch(returnErrors(err.response.data, err.response.status)));
 };
 
-export const deleteCargos = (id) => (dispatch, getState)=> {
+export const deleteCargo = (id) => (dispatch, getState)=> {
   axios.delete(`/api/cargos/${id}/`, tokenConfig(getState))
     .then(() => {
       dispatch(createMessage({ deleteCargo: 'CARGO DELETED'}));
